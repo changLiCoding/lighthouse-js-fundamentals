@@ -83,3 +83,54 @@ var donuts = [
 donuts.forEach( ( donuts ) => {
   console.log( `${ donuts.type } donuts cost $${ donuts.cost } each` )
 } )
+
+
+let bins = {
+  waste: 4, recycling: 2, compost: 5
+}
+
+const smartGarbage = ( key, obj ) => {
+  console.log( obj[key] );
+  if ( typeof ( obj[key] ) !== 'number' ) {
+    obj[key] = 1;
+  } else {
+    obj[key] = obj[key] + 1;
+  }
+  console.log( typeof ( obj[key] ) )
+  console.log( obj )
+}
+
+smartGarbage( 'recycling', bins );
+smartGarbage( 'recycling', bins );
+smartGarbage( 'drinking', bins );
+smartGarbage( 'eatting', bins );
+console.log( bins );
+
+
+
+
+const cars = [
+  {
+    time: 1568329654807,
+    speed: 40,
+  },
+  {
+    time: 1568329821632,
+    speed: 42,
+  },
+  {
+    time: 1568331115463,
+    speed: 35
+  }
+]
+
+const speed = 38
+
+const carPassing = ( cars, speed ) => {
+  let tempArr = [...cars, { time: Date.now(), speed: speed }];
+  return tempArr
+}
+
+const newArr = carPassing( cars, speed )
+
+console.log( newArr );
