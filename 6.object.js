@@ -124,6 +124,7 @@ const cars = [
   }
 ]
 
+
 const speed = 38
 
 const carPassing = ( cars, speed ) => {
@@ -134,3 +135,44 @@ const carPassing = ( cars, speed ) => {
 const newArr = carPassing( cars, speed )
 
 console.log( newArr );
+
+
+
+
+
+
+
+const vegetables = [
+  {
+    submitter: 'Old Man Franklin',
+    redness: 10,
+    plumpness: 5
+  },
+  {
+    submitter: 'Sally Tomato-Grower',
+    redness: 2,
+    plumpness: 8
+  },
+  {
+    submitter: 'Hamid Hamidson',
+    redness: 4,
+    plumpness: 3
+  }
+]
+
+const metric = 'redness'
+
+const judgeVegetable = function ( vegetables, metric ) {
+  // Your code in here ...
+  let bestIndex = 0;
+  for ( let i = 0; i < vegetables.length; i++ ) {
+
+    if ( vegetables[bestIndex][metric] < vegetables[i][metric] ) {
+      bestIndex = i;
+    }
+  }
+
+  return vegetables[bestIndex].submitter;
+}
+
+console.log( judgeVegetable( vegetables, metric ) )
