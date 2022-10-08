@@ -176,3 +176,29 @@ const judgeVegetable = function ( vegetables, metric ) {
 }
 
 console.log( judgeVegetable( vegetables, metric ) )
+
+
+
+
+
+let raceNumber = Math.floor( Math.random() * 1000 );
+
+let isEarly = true;
+let runnerAge = 45;
+
+
+if ( runnerAge > 18 && isEarly ) {
+  raceNumber = raceNumber + 1000;
+  console.log( `Welcome to our race. Your race will be held at 9:30pm. Your number is ${ raceNumber }.` )
+} else if ( runnerAge > 18 && !isEarly ) {
+  console.log( `Welcome to our race. Your race will be held at 11:00pm. Your number is ${ raceNumber }.` )
+} else if ( runnerAge < 18 ) {
+  console.log( `Welcome to our race. Your race will be held at 12:30pm. Your number is ${ raceNumber }.` );
+}
+
+
+let words = ['Hello', 'Cruel', 'And', 'Round', 'World'];
+
+for ( let i = 4; i > -1; i-- ) {
+  console.log( words[i] );
+}
