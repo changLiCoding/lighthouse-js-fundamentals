@@ -325,3 +325,125 @@ console.log( multiplicationTable( 10 ) );
 
 
 
+// Use the value below whenever you need the value of Pi
+const PI = 3.14159;
+
+const sphereVolume = function ( radius ) {
+  // Code here!
+  return PI * Math.pow( radius, 3 ) * 4 / 3
+}
+console.log( 4186 < sphereVolume( 10 ) && sphereVolume( 10 ) < 4189 );
+
+const coneVolume = function ( radius, height ) {
+  // And here!
+  return PI * Math.pow( radius, 2 ) * height / 3
+}
+console.log( 45 < coneVolume( 3, 5 ) && coneVolume( 3, 5 ) < 49 );
+
+const prismVolume = function ( height, width, depth ) {
+  // Probably here too!
+  return height * width * depth
+
+}
+
+console.log( prismVolume( 3, 4, 5 ) === 60 );
+
+const totalVolume = function ( solids ) {
+  // Code here? Yup!
+  let loopedVolume = [];
+  for ( let i = 0; i < solids.length; i++ ) {
+    if ( solids[i].type === 'sphere' ) {
+      loopedVolume.push( sphereVolume( solids[i].radius ) )
+    } else if ( solids[i].type === 'cone' ) {
+      loopedVolume.push( coneVolume( solids[i].radius, solids[i].height ) )
+    }
+    else if ( solids[i].type === 'prism' ) {
+      loopedVolume.push( prismVolume( solids[i].height, solids[i].width, solids[i].depth ) )
+    }
+  }
+  return loopedVolume.reduce( ( acc, value ) => acc + value, 0 )
+}
+
+const largeSphere = {
+  type: 'sphere',
+  radius: 40
+}
+
+const smallSphere = {
+  type: 'sphere',
+  radius: 10
+}
+
+const cone = {
+  type: 'cone',
+  radius: 3,
+  height: 5
+}
+
+const duck = [
+  largeSphere,
+  smallSphere,
+  cone
+]
+
+
+console.log( totalVolume( duck ) )
+console.log( 272000 < totalVolume( duck ) && totalVolume( duck ) < 275000 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const chooseRecipe = function ( bakeryA, bakeryB, recipes ) {
+  // Code here!
+}
+
+let bakeryA = ['saffron', 'eggs', 'tomato paste', 'coconut', 'custard'];
+let bakeryB = ['milk', 'butter', 'cream cheese'];
+let recipes = [
+  {
+    name: 'Coconut Sponge Cake',
+    ingredients: ['coconut', 'cake base']
+  },
+  {
+    name: 'Persian Cheesecake',
+    ingredients: ['saffron', 'cream cheese']
+  },
+  {
+    name: 'Custard Surprise',
+    ingredients: ['custard', 'ground beef']
+  }
+];
+
+console.log( chooseRecipe( bakeryA, bakeryB, recipes ) );
+
+bakeryA = ['potatoes', 'bay leaf', 'raisins'];
+bakeryB = ['red bean', 'dijon mustard', 'apples'];
+recipes = [
+  {
+    name: 'Potato Ganache',
+    ingredients: ['potatoes', 'chocolate']
+  },
+  {
+    name: 'Sweet Fish',
+    ingredients: ['anchovies', 'honey']
+  },
+  {
+    name: "Nima's Famous Dijon Raisins",
+    ingredients: ['dijon mustard', 'raisins']
+  }
+];
+
+console.log( chooseRecipe( bakeryA, bakeryB, recipes ) );
