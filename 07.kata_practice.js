@@ -387,7 +387,6 @@ const duck = [
 ]
 
 
-console.log( totalVolume( duck ) )
 console.log( 272000 < totalVolume( duck ) && totalVolume( duck ) < 275000 );
 
 
@@ -408,6 +407,28 @@ console.log( 272000 < totalVolume( duck ) && totalVolume( duck ) < 275000 );
 
 const chooseRecipe = function ( bakeryA, bakeryB, recipes ) {
   // Code here!
+  for ( let i = 0; i < recipes.length; i++ ) {
+    let ingredientA = recipes[i].ingredients[0]
+    let ingredientB = recipes[i].ingredients[1]
+    for ( let j = 0; j < bakeryA.length; j++ ) {
+      if ( bakeryA[j] === ingredientA ) {
+        for ( let h = 0; h < bakeryB.length; h++ ) {
+          if ( bakeryB[h] === ingredientB ) {
+            return recipes[i].name;
+          }
+        }
+      }
+    }
+    for ( let j = 0; j < bakeryA.length; j++ ) {
+      if ( bakeryA[j] === ingredientB ) {
+        for ( let h = 0; h < bakeryB.length; h++ ) {
+          if ( bakeryB[h] === ingredientA ) {
+            return recipes[i].name;
+          }
+        }
+      }
+    }
+  }
 }
 
 let bakeryA = ['saffron', 'eggs', 'tomato paste', 'coconut', 'custard'];
@@ -447,3 +468,160 @@ recipes = [
 ];
 
 console.log( chooseRecipe( bakeryA, bakeryB, recipes ) );
+
+
+
+
+
+
+
+
+
+
+
+
+const talkingCalendar = function ( date ) {
+  // Your code here
+  const inputData = date.split( '/' )
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  inputData[1] = months[inputData[1] - 1];
+  const tempArr = inputData[2].split( '' );
+  if ( tempArr[1] === '1' ) {
+    tempArr[1] = '1st';
+  } else if ( tempArr[1] === '2' ) {
+    tempArr[1] = '2nd';
+  } else if ( tempArr[1] === '3' ) {
+    tempArr[1] = '3rd'
+  } else {
+    tempArr[1] += 'th'
+  }
+  if ( tempArr[0] === '0' ) {
+    inputData[2] = tempArr[1]
+  } else {
+    inputData[2] = tempArr[0] + tempArr[1]
+  }
+  return `${ inputData[1] } ${ inputData[2] }, ${ inputData[0] }`
+};
+
+console.log( talkingCalendar( "2017/12/02" ) );
+console.log( talkingCalendar( "2007/11/11" ) );
+console.log( talkingCalendar( "1987/08/24" ) );
+
+
+
+
+
+
+
+
+
+const calculateChange = function ( total, cash ) {
+  // Your code here
+  const tempArr = [];
+  let dollarBills = {};
+  const dollarsArr = ['twentyDollars', 'tenDollars', 'fiveDollars', 'twoDollars', 'oneDollar', 'quarter', 'dime', 'nickel', 'penny']
+  let tempDiff = cash - total;
+  let twentyCash = Math.floor( tempDiff / 2000 );
+
+  let tenCash = Math.floor( ( tempDiff - twentyCash * 2000 ) / 1000 );
+
+  let fiveCash = Math.floor( ( tempDiff - tenCash * 1000 - twentyCash * 2000 ) / 500 );
+  let twoCash = Math.floor( ( tempDiff - twentyCash * 2000 - tenCash * 1000 - fiveCash * 500 ) / 200 );
+  let oneCash = Math.floor( ( tempDiff - twentyCash * 2000 - tenCash * 1000 - fiveCash * 500 - twoCash * 200 ) / 100 );
+  let quarterCash = Math.floor( ( tempDiff - twentyCash * 2000 - tenCash * 1000 - fiveCash * 500 - twoCash * 200 - oneCash * 100 ) / 25 );
+  let dimeCash = Math.floor( ( tempDiff - twentyCash * 2000 - tenCash * 1000 - fiveCash * 500 - twoCash * 200 - oneCash * 100 - quarterCash * 25 ) / 10 );
+  let nickelCash = Math.floor( ( tempDiff - twentyCash * 2000 - tenCash * 1000 - fiveCash * 500 - twoCash * 200 - oneCash * 100 - quarterCash * 25 - dimeCash * 10 ) / 5 );
+  let pennyCash = Math.floor( ( tempDiff - twentyCash * 2000 - tenCash * 1000 - fiveCash * 500 - twoCash * 200 - oneCash * 100 - quarterCash * 25 - dimeCash * 10 - nickelCash * 5 ) / 1 );
+  tempArr.push( twentyCash, tenCash, fiveCash, twoCash, oneCash, quarterCash, dimeCash, nickelCash, pennyCash );
+  for ( let i = 0; i < tempArr.length; i++ ) {
+    if ( tempArr[i] !== 0 ) {
+      dollarBills[dollarsArr[i]] = tempArr[i];
+    }
+  }
+  return dollarBills
+};
+
+console.log( calculateChange( 1787, 2000 ) );
+console.log( calculateChange( 2623, 4000 ) );
+console.log( calculateChange( 501, 1000 ) );
+
+
+
+
+
+
+
+var removeDuplicates = function ( nums ) {
+  for ( let i = 0; i < nums.length - 1; i++ ) {
+    for ( let j = i + 1; j < nums.length; j++ ) {
+      if ( nums[i] === nums[j] ) {
+        nums.splice( j, 1 );
+        j--;
+      }
+    }
+  }
+  return nums
+};
+
+console.log( removeDuplicates( [0, 0, 1, 1, 1, 2, 2, 3, 3, 4] ) )
+console.log( removeDuplicates( [1, 1, 1, 2] ) )
+
+
+
+
+
+
+const organizeInstructors = function ( instructors ) {
+  // Put your solution here
+  const organizedOjb = new Object();
+  for ( let i = 0; i < instructors.length; i++ ) {
+
+    if ( typeof ( organizedOjb[instructors[i].course] ) !== 'object' ) {
+      organizedOjb[instructors[i].course] = [];
+    }
+    organizedOjb[instructors[i].course].push( instructors[i].name )
+
+
+  }
+  return organizedOjb
+};
+
+console.log( organizeInstructors( [
+  { name: "Samuel", course: "iOS" },
+  { name: "Victoria", course: "Web" },
+  { name: "Karim", course: "Web" },
+  { name: "Donald", course: "Web" }
+] ) );
+console.log( organizeInstructors( [
+  { name: "Brendan", course: "Blockchain" },
+  { name: "David", course: "Web" },
+  { name: "Martha", course: "iOS" },
+  { name: "Carlos", course: "Web" }
+] ) );
+
+
+
+
+
+
+
+
+
+
+
+
+
+const makeCase = function ( input, cases ) {
+  // Put your solution here
+  let tempArr = [...input];
+  return tempArr
+}
+
+console.log( makeCase( "this is a string", "camel" ) );
+console.log( makeCase( "this is a string", "pascal" ) );
+console.log( makeCase( "this is a string", "snake" ) );
+console.log( makeCase( "this is a string", "kebab" ) );
+console.log( makeCase( "this is a string", "title" ) );
+console.log( makeCase( "this is a string", "vowel" ) );
+console.log( makeCase( "this is a string", "consonant" ) );
+console.log( makeCase( "this is a string", ["upper", "snake"] ) );
