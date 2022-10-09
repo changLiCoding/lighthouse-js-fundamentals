@@ -614,7 +614,104 @@ console.log( organizeInstructors( [
 const makeCase = function ( input, cases ) {
   // Put your solution here
   let tempArr = [...input];
-  return tempArr
+  if ( typeof ( cases ) === 'object' ) {
+    for ( let i = 0; i < tempArr.length; i++ ) {
+      for ( let j = 0; j < cases.length; j++ ) {
+        if ( cases[j] === 'upper' ) {
+          tempArr[i] = tempArr[i].toUpperCase();
+        } else if ( cases[j] === 'lower' ) {
+          tempArr[i] = tempArr[i].toLowerCase();
+        }
+        else if ( cases[j] === 'vowel' ) {
+          if ( tempArr[i] === 'a' || tempArr[i] === 'e' || tempArr[i] === 'i' || tempArr[i] === 'o' || tempArr[i] === 'u' ) {
+            tempArr[i] = tempArr[i].toUpperCase();
+          }
+        } else if ( cases[j] === 'consonant' ) {
+          if ( tempArr[i] !== 'a' && tempArr[i] !== 'e' && tempArr[i] !== 'i' && tempArr[i] !== 'o' && tempArr[i] !== 'u' ) {
+            tempArr[i] = tempArr[i].toUpperCase();
+          }
+        } else if ( cases[j] === 'title' ) {
+          tempArr[0] = tempArr[0].toUpperCase();
+          if ( tempArr[i] === ' ' ) {
+            tempArr[i + 1] = tempArr[i + 1].toUpperCase();
+          }
+        }
+        else if ( cases[j] === 'kebab' ) {
+          if ( tempArr[i] === ' ' ) {
+            tempArr.splice( i, 1, '-' )
+          }
+        }
+        else if ( cases[j] === 'snake' ) {
+          if ( tempArr[i] === ' ' ) {
+            tempArr.splice( i, 1, '_' )
+          }
+        }
+        else if ( cases[j] === 'pascal' ) {
+          tempArr[0] = tempArr[0].toUpperCase();
+          if ( tempArr[i] === ' ' ) {
+            tempArr[i + 1] = tempArr[i + 1].toUpperCase();
+            tempArr.splice( k, 1 );
+            k--;
+          }
+        }
+        else if ( cases[j] === 'camel' ) {
+          if ( tempArr[i] === ' ' ) {
+            tempArr[i + 1] = tempArr[i + 1].toUpperCase();
+            tempArr.splice( i, 1 );
+            i--;
+          }
+        }
+      }
+    }
+  } else {
+    for ( let k = 0; k < tempArr.length; k++ ) {
+      if ( cases === 'upper' ) {
+        tempArr[k] = tempArr[k].toUpperCase();
+      } else if ( cases === 'lower' ) {
+        tempArr[k] = tempArr[k].toLowerCase();
+      }
+      else if ( cases === 'vowel' ) {
+        if ( tempArr[k] === 'a' || tempArr[k] === 'e' || tempArr[k] === 'i' || tempArr[k] === 'o' || tempArr[k] === 'u' ) {
+          tempArr[k] = tempArr[k].toUpperCase();
+        }
+      } else if ( cases === 'consonant' ) {
+        if ( tempArr[k] !== 'a' && tempArr[k] !== 'e' && tempArr[k] !== 'i' && tempArr[k] !== 'o' && tempArr[k] !== 'u' ) {
+          tempArr[k] = tempArr[k].toUpperCase();
+        }
+      } else if ( cases === 'title' ) {
+        tempArr[0] = tempArr[0].toUpperCase();
+        if ( tempArr[k] === ' ' ) {
+          tempArr[k + 1] = tempArr[k + 1].toUpperCase();
+        }
+      }
+      else if ( cases === 'kebab' ) {
+        if ( tempArr[k] === ' ' ) {
+          tempArr.splice( k, 1, '-' )
+        }
+      }
+      else if ( cases === 'snake' ) {
+        if ( tempArr[k] === ' ' ) {
+          tempArr.splice( k, 1, '_' )
+        }
+      }
+      else if ( cases === 'pascal' ) {
+        tempArr[0] = tempArr[0].toUpperCase();
+        if ( tempArr[k] === ' ' ) {
+          tempArr[k + 1] = tempArr[k + 1].toUpperCase();
+          tempArr.splice( k, 1 );
+          k--;
+        }
+      }
+      else if ( cases === 'camel' ) {
+        if ( tempArr[k] === ' ' ) {
+          tempArr[k + 1] = tempArr[k + 1].toUpperCase();
+          tempArr.splice( k, 1 );
+          k--;
+        }
+      }
+    }
+  }
+  return tempArr.join( '' );
 }
 
 console.log( makeCase( "this is a string", "camel" ) );
@@ -625,3 +722,24 @@ console.log( makeCase( "this is a string", "title" ) );
 console.log( makeCase( "this is a string", "vowel" ) );
 console.log( makeCase( "this is a string", "consonant" ) );
 console.log( makeCase( "this is a string", ["upper", "snake"] ) );
+
+
+
+
+
+
+
+
+
+
+
+
+
+const urlDecode = function ( text ) {
+  // Put your solution here
+};
+
+console.log( urlDecode( "duck=rubber" ) );
+console.log( urlDecode( "bootcamp=Lighthouse%20Labs" ) );
+console.log( urlDecode( "city=Vancouver&weather=lots%20of%20rain" ) );
+console.log( urlDecode( "city=Vancouver&weather=lots%20of%20rain" ).weather );
