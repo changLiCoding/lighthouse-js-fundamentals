@@ -735,11 +735,64 @@ console.log( makeCase( "this is a string", ["upper", "snake"] ) );
 
 
 
+
 const urlDecode = function ( text ) {
   // Put your solution here
+  const tempArr = text.split( '&' )
+  tempObj = new Object();
+  for ( let i = 0; i < tempArr.length; i++ ) {
+    const newArr = tempArr[i].split( '=' );
+    tempObj[newArr[0]] = newArr[1];
+    tempObj[newArr[0]] = ( newArr[1].split( '%20' ) ).join( ' ' )
+  }
+  return tempObj
 };
 
 console.log( urlDecode( "duck=rubber" ) );
 console.log( urlDecode( "bootcamp=Lighthouse%20Labs" ) );
 console.log( urlDecode( "city=Vancouver&weather=lots%20of%20rain" ) );
 console.log( urlDecode( "city=Vancouver&weather=lots%20of%20rain" ).weather );
+
+
+
+
+
+
+
+
+
+
+const squareCode = function ( message ) {
+  // Put your solution here
+  const messageWhole = ( message.split( ' ' ) ).join( '' );
+  const messagelength = messageWhole.length;
+  const messageLines = Math.round( Math.sqrt( messagelength ) );
+  const messageColumns = Math.ceil( Math.sqrt( messagelength ) );
+  const tempArr = new Array( messageColumns );
+  for ( let i = 0; i < messageColumns; i++ ) {
+    tempArr[i] = new Array( 0 );
+  }
+  for ( let i = 0; i < messageLines; i++ ) {
+    for ( let j = 0; j < messageColumns; j++ ) {
+      tempArr[j].push( messageWhole[i * messageColumns + j] );
+    }
+  }
+
+  for ( let i = 0; i < tempArr.length; i++ ) {
+    tempArr[i] = tempArr[i].join( '' )
+  }
+  return tempArr
+};
+
+console.log( squareCode( "chill out" ) );
+console.log( squareCode( "feed the dog" ) );
+console.log( squareCode( "have a nice day" ) );
+console.log( squareCode( "if man was meant to stay on the ground god would have given us roots" ) );
+
+
+
+
+
+
+
+
