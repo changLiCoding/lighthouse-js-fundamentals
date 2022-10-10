@@ -796,3 +796,150 @@ console.log( squareCode( "if man was meant to stay on the ground god would have 
 
 
 
+
+
+
+
+
+
+
+function generatedBoard ( [a, b], [c, d] ) {
+  let cheseTable = new Array( 8 );
+  for ( let i = 0; i < 8; i++ ) {
+    cheseTable[i] = new Array( 8 );
+    for ( let j = 0; j < 8; j++ ) {
+      if ( i === a && j === b ) {
+        cheseTable[i][j] = 1;
+      } else if ( i === c && j === d ) {
+        cheseTable[i][j] = 1;
+      } else {
+        cheseTable[i][j] = 0
+      }
+    }
+  }
+  return cheseTable
+}
+function queenThreat ( arr ) {
+  let isWhiteSet = false;
+  let white = new Array();
+  let black = new Array();
+  for ( let i = 0; i < arr.length; i++ ) {
+    for ( let j = 0; j < arr[i].length; j++ ) {
+      if ( arr[i][j] === 1 && isWhiteSet === false ) {
+        white.push( i, j );
+        isWhiteSet = true;
+      } else if ( arr[i][j] === 1 && isWhiteSet === true ) {
+        black.push( i, j );
+      }
+    }
+  }
+  if ( white[0] === black[0] || white[1] === black[1] || white[0] - black[0] === white[1] - black[1] || white[0] - black[0] === black[1] - white[1] ) {
+    return true
+  } else {
+    return false
+  }
+}
+let whiteQueen = [0, 0];
+let blackQueen = [5, 7];
+let returnedChese = generatedBoard( whiteQueen, blackQueen );
+console.log( returnedChese );
+
+// let generatedBoard = generateBoard( whiteQueen, blackQueen );
+// console.log( generatedBoard( whiteQueen, blackQueen ) );
+console.log( queenThreat( returnedChese ) );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const blocksAway = function ( directions ) {
+  // Put your solution here
+  const position = [0, 0];
+  const turns = [];
+  const steps = [];
+  for ( let i = 0; i < directions.length; i++ ) {
+    if ( i % 2 === 0 ) {
+      turns.push( directions[i] );
+    } else {
+      steps.push( directions[i] );
+    }
+  }
+  console.log( turns, steps )
+  let initalSet = false
+  for ( let i = 0; i < turns.length; i++ ) {
+    if ( turns[0] === 'right' && initalSet === false ) {
+      initalSet = true;
+      position[0] += steps[0];
+    } else if ( turns[0] === 'left' && initalSet === false ) {
+      initalSet = true;
+      position[1] += steps[0]
+    }
+    if ( i % 2 !== 0 && i !== 0 && turns[0] === 'right' ) {
+      if ( turns[i] === turns[i - 1] ) {
+        position[1] = position[1] - steps[i];
+      }
+      else {
+        position[1] = position[1] + steps[i];
+      }
+    }
+    else if ( i % 2 === 0 && i !== 0 && turns[0] === 'right' ) {
+      if ( turns[i] === turns[i - 1] ) {
+        position[0] = position[0] - steps[i]
+      }
+      else {
+        position[0] = position[0] + steps[i];
+      }
+    }
+
+
+
+    if ( i % 2 !== 0 && i !== 0 && turns[0] === 'left' ) {
+      if ( turns[i] === turns[i - 1] ) {
+        position[0] = position[0] - steps[i];
+      }
+      else {
+        position[0] = position[0] + steps[i];
+      }
+    }
+    else if ( i % 2 === 0 && i !== 0 && turns[0] === 'left' ) {
+      if ( turns[i] === turns[i - 1] ) {
+        position[1] = position[1] - steps[i]
+      }
+      else {
+        position[1] = position[1] + steps[i];
+      }
+    }
+  }
+  const positionObj = new Object();
+  positionObj.nortth = position[1];
+  positionObj.east = position[0];
+  return positionObj
+};
+
+console.log( blocksAway( ["right", 2, "left", 3, "left", 1] ) );
+console.log( blocksAway( ["left", 1, "right", 1, "left", 1, "right", 1, "left", 1, "right", 1] ) );
+console.log( blocksAway( ["left", 3, "right", 1, "right", 3, "right", 1] ) );
+
+
+
+
+
+
+
+
+
+
+let prompt = require( "prompt-sync" )();
+
+// code below (replace this example)
+let answer = prompt( "Guess a number: " );
+console.log( "You answered: " + answer );
